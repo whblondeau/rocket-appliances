@@ -19,7 +19,7 @@ The name was adopted partly as an homage to the Canadian TV show [Trailer Park B
 
 - The Territory
 
-### The Basic Rule of Rocket Appliances
+### This One Weird Rule of Rocket Appliances
 
 Before looking at each of the appliances in detail, it's important to understand the one geometric rule that relates them:
 
@@ -28,7 +28,7 @@ Before looking at each of the appliances in detail, it's important to understand
 "Off the edge" cannot apply to the Wireframe Earth, because it by definition includes all points. However, many projections are truncated, so they omit points on the Wireframe Earth's surface. Flatland includes all of the points included in the corresponding projection; but a Map is typically only a subset of Flatland.
  
 ### Wireframe Earth
-We start with the _Wireframe Earth_ (often simply _Wireframe_), which is a familiar concept. (Note that its right cartographic name is a [reference ellipsoid](http://en.wikipedia.org/wiki/Reference_ellipsoid); but "Wireframe Earth" seems more salient as an introductory term.) The Wireframe Earth is a representation of the Globe as an immaterial ellipsoidal surface traced with angular coordinates, normally latitude and longitude. Sometimes, for geodetic purposes, a radial scalar z-coordinate is added. The Wireframe Earth has no other properties. 
+We start with the _Wireframe Earth_ (often simply _Wireframe_), which is a familiar concept. (Note that its right cartographic name is a [reference ellipsoid](http://en.wikipedia.org/wiki/Reference_ellipsoid); but "Wireframe Earth" seems more salient as an introductory term.) The Wireframe Earth is a representation of the Globe as an immaterial ellipsoidal surface traced with a _graticule_ of angular coordinates, normally latitude and longitude. Sometimes, for geodetic purposes, a radial scalar z-coordinate is added. The Wireframe Earth has no other properties. 
 
 For a decent short discussion of the underlying reasoning and model of the Wireframe Earth, see [http://www.georeference.org/doc/the_earth_as_an_ellipsoid.htm](http://www.georeference.org/doc/the_earth_as_an_ellipsoid.htm).
 
@@ -64,28 +64,12 @@ The Map is, in principle, an interactive artifact. It provides all kinds of info
 
 ("Interactive" doesn't mean "computerized", by the way. I used to navigate at sea, and I can assure you that patiently and carefully erasing penciled position fixes, dead reckoning tracks, and so on from hydrographic charts after using them to plot a passage is the moral equivalent of refreshing the computer display. Just more time-consuming, painstaking, and manual. But we _definitely_ interacted with those charts.) 
 
-So, now we have the first four appliances: Wireframe Earth, Projection, Flatland, Map. In order to discuss the fifth, Territory, we need to 
+### Territory
+So, now we have defined the first four appliances: Wireframe Earth, Projection, Flatland, and Map. In order to discuss the fifth, Territory, we need to consider the One Weird Rule. This tells us that, for any point on the Map, there is exactly one corresponding point on the Wireframe Earth. This allows us to define the Territory Appliance: _Territory is the projection of the Map onto the Wireframe Earth_. Territory is therefore a dependent structure, representing the portion of the Earth's surface shown on the Map. When the Map is zoomed or panned, the Territory changes accordingly.
 
 
 
-The interactive map is, in concept, a dimensioned _geographical representation surface_ ('g-surf'). The g-surf has three important properties: 
 
-- the _coordinate system_, which is a system for specifying geospatial location.
 
-- the _territory_, which is the portion of the Earth's surface being represented.
-
-- the _viewfield_, which is an arbitrary location system, covering the entire g-surf, capable of resolving a location down to a single pixel in a raster-rendered view.
-
-The territory is a dependent variable. It is determined by
-
-	- a single location in the coordinate system, the _attachment point_;
-
-	- a scaling factor, _zoom_ or _apparent altitude_, which expresses the amount of actual physical geography displayed in the viewfield;
-
-	- the projection of the coordinate system, which will cause various points to be 
-
-Note that the attachment point, being a single location, remains identical if the coordinate system of the territory
-
-The reference is not inherently static: it's subject to pan, zoom, and rotation in the general case. The coordinate system can also be _reprojected_, i.e. converted to a different coordinate system. Reprojection does not alter the territory; only teleportation does that.
 
 
