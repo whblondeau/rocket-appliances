@@ -6,7 +6,7 @@ The name was adopted partly as an homage to the Canadian TV show [Trailer Park B
 
 `rocket-appliances` is intended to be an analysis and investigation tool. It's probably not worth ever implementing; but that doesn't matter. The value of this language lies in designing it: by forcing the strict definition of the core data structures and operations of a generic geospatial language, `rocket-appliances` will hopefully create a general operational model that can underwrite attempts to teach, explain, learn, and analyze the assets and behavior of various resources and systems.
 
-## rocket-appliances fundamentals
+## rocket-appliances fundamental conceptual model
 `rocket-appliances` is built around the logical model of how geographic projections provide structure to an interactive map. It involves five basic elements, or, as we might as well call them, _appliances_:
 
 - The Wireframe Earth
@@ -65,10 +65,20 @@ The Map is, in principle, an interactive artifact. It provides all kinds of info
 ("Interactive" doesn't mean "computerized", by the way. I used to navigate at sea, and I can assure you that patiently and carefully erasing penciled position fixes, dead reckoning tracks, and so on from hydrographic charts after using them to plot a passage is the moral equivalent of refreshing the computer display. Just more time-consuming, painstaking, and manual. But we _definitely_ interacted with those charts.) 
 
 ### Territory
-So, now we have defined the first four appliances: Wireframe Earth, Projection, Flatland, and Map. In order to discuss the fifth, Territory, we need to consider the One Weird Rule. This tells us that, for any point on the Map, there is exactly one corresponding point on the Wireframe Earth. This allows us to define the Territory Appliance: _Territory is the projection of the Map onto the Wireframe Earth_. Territory is therefore a dependent structure, representing the portion of the Earth's surface shown on the Map. When the Map is zoomed or panned, the Territory changes accordingly.
+So, now we have defined the first four appliances: Wireframe Earth, Projection, Flatland, and Map. In order to discuss the fifth, Territory, we need to consider the One Weird Rule. This tells us that, for any point on the Map, there is exactly one corresponding point on the Wireframe Earth. This allows us to define the Territory Appliance: _Territory is the projection of the Map onto the Wireframe Earth_. **Territory is therefore a dependent structure**, representing the portion of the Earth's surface shown on the Map. When the Map is zoomed or panned, the Territory changes accordingly.
 
+## rocket-appliances fundamental data structures and operations
 
+### fourpoint
+The _fourpoint_ is a data structure that represents a single point in a given projection. It consists of 
 
+ 1. The _Wireframe Point_, identified by a suitable geographical coordinate system (most commonly, decimal egrees; traditional degrees/minutes/seconds are also usable; and signed radian coordinates are a plausible option.)
+
+ 2. The _Point of Projection_ of the Wireframe Point onto the projection surface. This point is a two-dimensional geometrical coordinate (usually _xy_ or _polar_) drawn against a well-understood frame of reference on the surface. The Point of Projection is produced by the mathematics of the projection definition, operating on the Wireframe Point.
+
+ 3. The _Flatland Point_, which is the translation of the Point of Projection coordinates onto Flatland. This is often subsumed into the choice of coordinate system in the Point of Projection computation. However, if the coordinates of Flatland are restricted or transformed as compared to the Projection Coordinates, that transformation must be applied to yield the Flatland Point. (Note that it's possible for Flatland to be defined to be smaller than the Projection, in which case the Flatland Point's value might be Out of Bounds.)
+
+ 4. The _Map Point_ is the coordinate of the fourpoint on the Map. This requires a coordinate transformation (except for the degenerate cases in which the Map covers the entire extent of the Flatland, or has the same coordinate system as the Flatland.) The coordinate of the fourpoint will sometimes be Out of Bounds, indicating that, due to zoom or pan operations, the fourpoint is not displayed on the Map. 
 
 
 
