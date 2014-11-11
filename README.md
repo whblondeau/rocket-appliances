@@ -2,7 +2,7 @@
 
 **rocket-appliances** is a design for a programming language. 
 
-The name was adopted partly as an homage to the Canadian TV show [Trailer Park Boys](http://en.wikipedia.org/wiki/Trailer_Park_Boys) and partly as an act of desperation when all reasonable portmanteau forms of "gis", "geo", projection", "viewport", "wireframe", and "territory" were shown to be already colonized in googlespace - whether as the name of an existing company or product, or as a term of art in various communities of practice.
+The name was adopted partly as an homage to one of the most famous [Rickyisms](http://trailerpark.wikia.com/wiki/Rickyisms) from the Canadian TV show [Trailer Park Boys](http://en.wikipedia.org/wiki/Trailer_Park_Boys) and partly as an act of desperation when all reasonable portmanteau forms of "gis", "geo", projection", "viewport", "wireframe", and "territory" were shown to be already colonized in googlespace - whether as the name of an existing company or product, or as a term of art in various communities of practice.
 
 `rocket-appliances` is intended to be an analysis and investigation tool. It's probably not worth ever implementing; but that doesn't matter. The value of this language lies in designing it: by forcing the strict definition of the core data structures and operations of a generic geospatial language, `rocket-appliances` will hopefully create a general operational model that can underwrite attempts to teach, explain, learn, and analyze the assets and behavior of various resources and systems.
 
@@ -79,6 +79,41 @@ The _fourpoint_ is a data structure that represents a single point in a given pr
  3. The _Flatland Point_, which is the translation of the Point of Projection coordinates onto Flatland. This is often subsumed into the choice of coordinate system in the Point of Projection computation. However, if the coordinates of Flatland are restricted or transformed as compared to the Projection Coordinates, that transformation must be applied to yield the Flatland Point. (Note that it's possible for Flatland to be defined to be smaller than the Projection, in which case the Flatland Point's value might be Out of Bounds.)
 
  4. The _Map Point_ is the coordinate of the fourpoint on the Map. This requires a coordinate transformation (except for the degenerate cases in which the Map covers the entire extent of the Flatland, or has the same coordinate system as the Flatland.) The coordinate of the fourpoint will sometimes be Out of Bounds, indicating that, due to zoom or pan operations, the fourpoint is not displayed on the Map. 
+
+### coordinates
+Coordinates in `rocket-appliances` come in pairs.
+
+These pairs of coordiates are either _spherical_ coordinates that apply to the Wireframe earth and any Territory projected onto it; or _planar_ coordinates that designate a location on the Surface of Projection, Flatland, or the Map.
+
+#### angular values
+`rocket-appliances` supports multiple ways of representing angle:
+
+ - degrees/minutes/seconds (typically used only for longitude/latitude), e.g. `42d13'22.17"`
+
+ - decimal degrees, e.g. `42.22283d`
+
+ - decimal radians, e.g. `0.73692740301rad` and
+
+ - fractional radians (typically only used for major increments) e.g. `PI`, `PI/3`, `2PI/3`.
+
+#### spherical coordinate pair: `lonlat`
+`rocket-appliances` defines a single kind of spherical coordinate, the _lonlat_. This is a longitude/latitude pair, whose members are happily named _lon_ and _lat_. The values of lon and lat are angularvalues, signed by 'e/w' and 'n/s' conventions respectively. The Wireframe Point is always a lonlat.
+
+#### planar coordinate pairs: `xy` and `polar`
+ - An `xy` is a rectangular cartesian horizontal vs. vertical coordinate. `x` represents the horizontal, and `y` is vertical. These measurements are taken with respect to a defined (0, 0) `origin`.
+
+ - A `polar` is a polar coordinate, distance vs. azimuth. Distance is named `dist` and azimuth named `az`. A `polar` is measured against a (0, 0d) `pole`, which is a reference location and direction. As is the case with `lon` and `lat`, the azimuth angular measure may be represented in numerous ways.
+
+The Wireframe and the Territory have `lonlat` coordinates only. All other Appliances have planar coordinates only (either `xy` or `polar`.) It's important to understand that, although longitude/latitude graticules are very often projected onto the other Appliances, and even depicted as the primary measurement on some Maps (notably Mercator Maps), this is _only a convenience_. The Plane of Projection, Flatland, and the Map are fundamentally planar. 
+
+#### distinguished coordinate values
+Points can assume certain special values not represented by an ordinary coordinate.
+
+ - `out_of_bounds` means that the point value is valid, but not represented within the current context (Map, Projection, Flatland, or Territory; There are no valid `lonlat` values that are `out_of_bounds` on the Wireframe Earth.) This is a frequent situation when establishing a `fourpoint`: either because the Projection does not support the Wireframe Point (for example: Mercator Projection truncated at 85n cannot represent a perfectly valid coordinate at 88n); or because the Map (and by extenstion, the Territory) does not include the point.
+
+ - `invalid` means a coordinate pair that does not identify a point logically defined in the current context. An attempt to assign a latitude of 135s has no meaning, since the South Pole is at 90s. `invalid` is usually the result of a computation that has not been resolved, or an algorithmic bug.
+
+ - `nowhere` is a statement that a given defined point has not been assigned a value. This is characteristic of an incomplete computation sequence. It is the default initialization value for any set of coordinates.
 
 
 
