@@ -1,6 +1,6 @@
 #rocket-appliances: a geospatial domain language
 
-**rocket-appliances** is a design for a programming language. 
+**rocket-appliances** is a design for a high-level programming language. Its purpose is to define a precise model for geospatial work.
 
 The name was adopted partly as an homage to one of the most famous [Rickyisms](http://trailerpark.wikia.com/wiki/Rickyisms) from the Canadian TV show [Trailer Park Boys](http://en.wikipedia.org/wiki/Trailer_Park_Boys) and partly as an act of desperation when all reasonable portmanteau forms of "gis", "geo", projection", "viewport", "wireframe", and "territory" were shown to be already colonized in googlespace - whether as the name of an existing company or product, or as a term of art in various communities of practice.
 
