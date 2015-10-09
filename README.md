@@ -1,10 +1,14 @@
 #rocket-appliances: a geospatial domain language
 
-**rocket-appliances** is a design for a high-level programming language. Its purpose is to define a precise model for geospatial work.
+**rocket-appliances** is a design for a high-level domaon-specific programming language. Its purpose is to define a precise model for geospatial work.
 
-The name was adopted partly as an homage to one of the most famous [Rickyisms](http://trailerpark.wikia.com/wiki/Rickyisms) from the Canadian TV show [Trailer Park Boys](http://en.wikipedia.org/wiki/Trailer_Park_Boys) and partly as an act of desperation when all reasonable portmanteau forms of "gis", "geo", projection", "viewport", "wireframe", and "territory" were shown to be already colonized in googlespace - whether as the name of an existing company or product, or as a term of art in various communities of practice.
+The name was adopted partly as an homage to one of the most famous [Rickyisms](http://trailerpark.wikia.com/wiki/Rickyisms) from the Canadian TV show [Trailer Park Boys](http://en.wikipedia.org/wiki/Trailer_Park_Boys) and partly as an act of desperation when all reasonable portmanteau forms of "gis", "geo", projection", "viewport", "wireframe", and "territory" were shown to be already colonized in googlespace&mdash;whether as the name of an existing company or product, or as a term of art in various communities of practice.
 
-`rocket-appliances` is intended to be an analysis and investigation tool. It's probably not worth ever implementing; but that doesn't matter. The value of this language lies in designing it: by forcing the strict definition of the core data structures and operations of a generic geospatial language, `rocket-appliances` will hopefully create a general operational model that can underwrite attempts to teach, explain, learn, and analyze the assets and behavior of various resources and systems.
+**`rocket-appliances` is intended to be an illustrative analysis and investigation tool.** If implemented, it will be handy for, at minimum, prototyping geospatial operations, and probably as a demonstrator for geospatial principles.
+
+However, the value of this language lies in designing it: by forcing the strict definition of the core data structures and operations of a generic geospatial language, `rocket-appliances` will hopefully create a general operational model that can underwrite attempts to teach, explain, learn, and analyze the assets and behavior of various geospatial resources and systems.
+
+**`rocket-appliances` is not intended as a precision geospatial representation.** Not to say it _isn't_ compatible with such; but there's no attempt, in this project at any rate, to guarantee that it _is_. Geospatial programming, involving as it does a very wide range of context and scale&mdash;from meters of position or alititude on the small end, to the size of the Earth itself (circumference of 40075.017 km at the equator) at the large&mdash;is sometimes very sensitive to issues of precision. Beyond that, [Geodesy](https://en.wikipedia.org/wiki/Geodesy) tells us a lot about the very odd subtleties of the planet's shape. Put it all together, and any attempt to perform high-precision geospatial computations balloons in difficulty and scope of effort.
 
 ## rocket-appliances fundamental conceptual model
 `rocket-appliances` is built around the logical model of how geographic projections provide structure to an interactive map. It involves five basic elements, or, as we might as well call them, _appliances_:
@@ -23,7 +27,7 @@ The name was adopted partly as an homage to one of the most famous [Rickyisms](h
 
 Before looking at each of the appliances in detail, it's important to understand the one geometric rule that relates them:
 
-<blockquote>Any point on any appliance will map to, at most, one point on each of the other appliancess. This mapping establishes a set of up to five "corresponding points", one per appliance. Less than five corresponding points means you'e off the edge someplace.</blockquote>
+<blockquote>Any point on any appliance will map to, at most, one point on each of the other appliances. This mapping establishes a set of up to five "corresponding points", one per appliance. Less than five corresponding points means you'e off the edge someplace.</blockquote>
 
 "Off the edge" cannot apply to the Wireframe Earth, because it by definition includes all points. However, many projections are truncated, so they omit points on the Wireframe Earth's surface. Flatland includes all of the points included in the corresponding projection; but a Map is typically only a subset of Flatland.
  
