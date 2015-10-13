@@ -4,7 +4,7 @@
 
 The name was adopted partly as an homage to one of the most famous [Rickyisms](http://trailerpark.wikia.com/wiki/Rickyisms) from the Canadian TV show [Trailer Park Boys](http://en.wikipedia.org/wiki/Trailer_Park_Boys) and partly as an act of desperation when all reasonable portmanteau forms of "gis", "geo", projection", "viewport", "wireframe", and "territory" were shown to be already colonized in googlespace&mdash;whether as the name of an existing company or product, or as a term of art in various communities of practice.
 
-**`rocket-appliances` is intended to be an illustrative analysis and investigation tool.** If implemented, it will be handy for, at minimum, prototyping geospatial operations, and probably as a demonstrator for geospatial principles.
+**`rocket-appliances` is intended to be an illustrative analysis and investigation tool.** If implemented, it will be handy for, at minimum, demonstrating geospatial principles, and probably for prototyping geospatial operations as well.
 
 However, the value of this language lies in designing it: by forcing the strict definition of the core data structures and operations of a generic geospatial language, `rocket-appliances` will hopefully create a general operational model that can underwrite attempts to teach, explain, learn, and analyze the assets and behavior of various geospatial resources and systems.
 
